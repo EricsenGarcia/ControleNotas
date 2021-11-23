@@ -7,9 +7,6 @@ object Dm: TDm
     Params.Strings = (
       'User_Name=sysdba'
       'Password=masterkey'
-      
-        'Database=C:\Users\Pc do Dark\Desktop\Garcia\Projetos\Notas\bin\b' +
-        'ase\BANCO.FDB'
       'DriverID=FB')
     FetchOptions.AssignedValues = [evRowsetSize, evRecordCountMode, evCursorKind, evDetailCascade]
     FetchOptions.CursorKind = ckDefault
