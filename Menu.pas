@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Datasnap.DBClient,
-  Datasnap.Provider, cad_alunos, Cad_notas;
+  Datasnap.Provider, cad_alunos, Cad_notas, math;
 
 type
   TFrmMenu = class(TForm)
@@ -93,11 +93,12 @@ end;
 
 procedure TFrmMenu.CdsAlunosCalcFields(DataSet: TDataSet);
 begin
-  CdsAlunos.FieldByName('media').Value := (   CdsAlunos.FieldByName('NOTA_01').Value
-                                            + CdsAlunos.FieldByName('NOTA_02').Value
-                                            + CdsAlunos.FieldByName('NOTA_03').Value
-                                            + CdsAlunos.FieldByName('NOTA_04').Value
-                                          ) / 4;
+  CdsAlunos.FieldByName('media').Value := RoundTo( (   CdsAlunos.FieldByName('NOTA_01').Value
+                                                      + CdsAlunos.FieldByName('NOTA_02').Value
+                                                      + CdsAlunos.FieldByName('NOTA_03').Value
+                                                      + CdsAlunos.FieldByName('NOTA_04').Value
+                                                    ) / 4
+                                                 ,-2);
 
   if CdsAlunos.FieldByName('media').Value >= 7 then
     CdsAlunos.FieldByName('Status').Value := 'Aprovado'
